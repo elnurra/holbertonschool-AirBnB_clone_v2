@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """ """
+import unittest
+import os
 from tests.test_models.test_base_model import test_basemodel
 from models.state import State
 
@@ -13,6 +15,7 @@ class test_state(test_basemodel):
         self.name = "State"
         self.value = State
 
+    @unittest.skipIf(os.getenv("HBNB_ENV") is not None, "Testing DBStorage")
     def test_name3(self):
         """ """
         new = self.value()
