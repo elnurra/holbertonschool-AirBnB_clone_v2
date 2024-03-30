@@ -31,8 +31,8 @@ class BaseModel:
         kwargs.setdefault('created_at', datetime.utcnow())
         if not isinstance(kwargs['created_at'], datetime):
             kwargs['created_at'] = datetime.strptime(
-                kwargs['created_at'], "%Y-%m-%d %H:%M:%S.%f"
-            )
+                    kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f"
+                    )
         kwargs.setdefault('updated_at', datetime.utcnow())
         if not isinstance(kwargs['updated_at'], datetime):
             kwargs['updated_at'] = datetime.strptime(
