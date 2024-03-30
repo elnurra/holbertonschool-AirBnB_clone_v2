@@ -40,7 +40,4 @@ class User(BaseModel, Base):
         """
             custom setter: encrypts password to MD5
         """
-        secure = hashlib.md5()
-        secure.update(pwd.encode("utf-8"))
-        secure_password = secure.hexdigest()
-        setattr(self, "password", secure_password)
+        setattr(self, "password", pwd)
