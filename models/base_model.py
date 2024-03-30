@@ -31,7 +31,7 @@ class BaseModel:
         kwargs.setdefault('created_at', datetime.utcnow())
         if not isinstance(kwargs['created_at'], datetime):
             kwargs['created_at'] = datetime.strptime(
-                    kwargs['created_at'], "%Y-%m-%dT%H:%M:%S.%f"
+                    kwargs['created_at'], "%Y-%m-%d %H:%M:%S.%f"
                     )
         kwargs.setdefault('updated_at', datetime.utcnow())
         if not isinstance(kwargs['updated_at'], datetime):
@@ -69,4 +69,4 @@ class BaseModel:
 
     def delete(self):
         """deletes basemodel instance"""
-        models.storage.delete(self)
+        odels.storage.delete(self)
