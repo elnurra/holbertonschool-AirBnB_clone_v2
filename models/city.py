@@ -1,22 +1,20 @@
 #!/usr/bin/python3
 """ City Module for HBNB project """
-from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, ForeignKey
-from sqlalchemy.orm import relationship
-from os import getenv
-STO_TYP = getenv("HBNB_TYPE_STORAGE")
+from sqlalchemy import ForeignKey, String
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from models.base_model import Base, BaseModel
+from models.place import Place
 
 
 class City(BaseModel, Base):
-    if STO_TYP == 'db':
-        """ The city class, contains state ID and name """
-        __tablename__ = "cities"
-        name = Column(String(128), nullable=False)
-        state_id = Column(String(60), ForeignKey("states.id"), nullable=False)
-        places = relationship('Place', backref='cities',
-                              cascade='all, delete, delete-orphan')
-        __table_args__ = {'extend_existing': True}
-    else:
-        state_id = ''
-        name = ''
-        places = []
+    """The city class, contains state ID and name"""
+
+    __tablename__ = "cities"
+
+    name: Mapped[str] = mapped_column(String(128), nullable=False)
+    state_id: Mapped[str] = mapped_column(
+        String(60), ForeignKey("states.id"), nullable=False
+    )
+    places: Mapped["Place"] = relationship("Place", backref="cities",
+                                           cascade="delete")
