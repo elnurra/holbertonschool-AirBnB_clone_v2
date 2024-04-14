@@ -34,7 +34,7 @@
           <H3>Amenities</H3>
           <H4>&nbsp;</H4>
           <UL class="popover">
-          {% for amenity in amenities.values|sort(attribute="name") %}
+          {% for amenity in amenities.values()|sort(attribute="name") %}
             <LI>{{ amenity.name }}</LI>
           {% endfor %}
           </UL>
